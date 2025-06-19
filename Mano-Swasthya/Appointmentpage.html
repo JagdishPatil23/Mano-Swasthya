@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 class="text-2xl font-semibold text-gray-700 text-center mb-4">Book an Appointment</h2>
+        
+        <label class="block text-gray-600 mb-1">Select Professional:</label>
+        <select class="w-full p-2 border rounded mb-4" id="professional">
+            <option>Dr. Vaishnavi Kadam - Psychologist (10 years)</option>
+            <option>Dr. krushal Jadhav - Therapist (8 years)</option>
+            <option>Dr. saral Parol - Counselor (5 years)</option>
+        </select>
+        
+        <label class="block text-gray-600 mb-1">Select Date & Time:</label>
+        <input type="datetime-local" class="w-full p-2 border rounded mb-4" id="datetime">
+        
+        <label class="block text-gray-600 mb-1">Session Type:</label>
+        <select class="w-full p-2 border rounded mb-4" id="sessionType">
+            <option>Video Call</option>
+            <option>Audio Call</option>
+            <option>In-Person</option>
+        </select>
+        
+        <label class="block text-gray-600 mb-1">Payment:</label>
+        <select class="w-full p-2 border rounded mb-4" id="paymentMethod">
+            <option>Credit Card</option>
+            <option>PayPal</option>
+            <option>Bank Transfer</option>
+        </select>
+        
+        <button onclick="confirmBooking()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Confirm & Pay</button>
+    </div>
+
+    <script>
+        function confirmBooking() {
+            const professional = document.getElementById('professional').value;
+            const datetime = document.getElementById('datetime').value;
+            const sessionType = document.getElementById('sessionType').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            if (!datetime) {
+                alert("Please select a valid date and time.");
+                return;
+            }
+            
+            // Simulate Payment Processing
+            alert(`Redirecting to payment...\nPayment Method: ${paymentMethod}`);
+            setTimeout(() => {
+                alert(`Appointment Confirmed!\nProfessional: ${professional}\nDate & Time: ${datetime}\nSession Type: ${sessionType}\nPayment Method: ${paymentMethod}`);
+                sendEmailConfirmation(professional, datetime, sessionType);
+            }, 2000);
+        }
+
+        function sendEmailConfirmation(professional, datetime, sessionType) {
+            alert(`Email Confirmation Sent!\n\nDetails:\nProfessional: ${professional}\nDate & Time: ${datetime}\nSession Type: ${sessionType}`);
+        }
+    </script>
+</body>
+</html>
