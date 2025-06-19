@@ -1,0 +1,165 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    display: flex;
+
+    height: 100vh;
+
+    background: white;
+
+}
+
+
+
+/* Sidebar */
+
+.sidebar {
+
+    width: 200px;
+
+    background: bisque;
+
+    padding: 20px;
+
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.nav-btn {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px;
+
+    margin-bottom: 10px;
+
+    background: none;
+
+    border: none;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+
+.nav-btn:hover {
+
+    background: beige;
+
+}
+
+
+
+/* Main Content */
+
+.content {
+
+    flex: 1;
+
+    padding: 20px;
+
+}
+
+
+
+h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+
+/* Cards */
+
+.card {
+
+    background: whitesmoke;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.card h2 {
+
+    margin: 0 0 10px;
+
+}
+
+
+
+.score {
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+}
+
+
+
+progress {
+
+    width: 100%;
+
+    height: 10px;
+
+}
+
+
+
+/* Assessment Button */
+
+.assessment button {
+
+    background: lightblue;
+
+    color: darkred;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+
+.assessment button:hover {
+
+    background: darkturquoise;
+
+}

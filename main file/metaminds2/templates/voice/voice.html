@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk to me ! I am here for you</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ded7dc, #de8cd5);
+            color: black;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+        }
+        h2 { margin-bottom: 15px; }
+        button {
+            padding: 15px 20px;
+            margin: 10px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .start-btn { background: #3c784a; color: white; }
+        .start-btn:hover { background: #218838; }
+        .stop-btn { background: #8e3c44; color: white; }
+        .stop-btn:hover { background: #c82333; }
+        .result, .advice {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .advice { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h2>"Speak your heart, let AI be your listening ear. 💙🎤"</h2>
+        <p>Click start and speak to analyze your mood.</p>
+        <button class="start-btn" onclick="startListening()">🎤 Start Talking</button>
+        <button class="stop-btn" onclick="stopListening()">⏹ Stop</button>
+        <p class="result" id="moodResult">Detected Mood: -</p>
+        <p class="advice" id="advice">Advice: -</p>
+    </div>
+    
+    <script>
+        let recognition;
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+        } else if ('SpeechRecognition' in window) {
+            recognition = new SpeechRecognition();
+        } else {
+            alert("Your browser does not support speech recognition.");
+        }
+        
+        recognition.continuous = true;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        recognition.onresult = async function(event) {
+            let transcript = event.results[event.results.length - 1][0].transcript;
+            analyzeSpeech(transcript);
+        };
+
+        function startListening() {
+            document.getElementById("moodResult").textContent = "Listening... 🎤";
+            recognition.start();
+        }
+
+        function stopListening() {
+            recognition.stop();
+            document.getElementById("moodResult").textContent = "Processing...";
+        }
+
+        async function analyzeSpeech(text) {
+            let mood = "Neutral 😐";
+            let advice = "Stay positive and keep a balanced mindset!";
+
+            if (text.includes("stress") || text.includes("tired") || text.includes("anxious")) {
+                mood = "Stressed 😟";
+                advice = "Take a deep breath, go for a walk, or meditate!";
+            } else if (text.includes("happy") || text.includes("excited")) {
+                mood = "Happy 😊";
+                advice = "Keep up the good energy! Spread positivity.";
+            } else if (text.includes("sad") || text.includes("depressed")) {
+                mood = "Feeling Down 😢";
+                advice = "Talk to a friend, listen to calming music, or consider professional help.";
+            }
+            
+            document.getElementById("moodResult").textContent = `Detected Mood: ${mood}`;
+            document.getElementById("advice").textContent = `Advice: ${advice}`;
+        }
+    </script>
+</body>
+</html>

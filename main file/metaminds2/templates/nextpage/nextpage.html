@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Dashboard</title>
+
+    <!-- Corrected CSS path -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='maincss.css') }}">
+
+    <!-- If you have other styles: -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <button class="nav-btn">🏠 Dashboard</button>
+            <button class="nav-btn">🧠 Assessments</button>
+            <button class="nav-btn">📅 Programs</button>
+            <button class="nav-btn">👤 Profile</button>
+            <button class="nav-btn">⚙ Settings</button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <h1>Mental Health Dashboard</h1>
+
+        <div class="grid">
+            <!-- Current Score -->
+            <div class="card">
+                <h2>Current Mental Health Score</h2>
+                <p>Based on recent assessments</p>
+                <div class="score" id="score">72</div>
+                <progress id="progress-bar" value="72" max="100"></progress>
+            </div>
+
+            <!-- Weekly Progress Chart -->
+            <div class="card">
+                <h2>Weekly Progress</h2>
+                <p>Your mental health score over time</p>
+                <canvas id="mentalHealthChart"></canvas>
+            </div>
+
+            <!-- Recommended Programs -->
+            <div class="card">
+                <h2>Recommended Programs</h2>
+                <ul id="programs-list"></ul>
+            </div>
+        </div>
+
+        <!-- AI-Powered Assessment -->
+        <div class="card assessment">
+            <h2>AI-Powered Mental Health Assessment</h2>
+            <p>Get an up-to-date evaluation of your mental well-being</p>
+            <button id="new-assessment">Start New Assessment</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='javamain.js') }}"></script>
+
+</body>
+</html>

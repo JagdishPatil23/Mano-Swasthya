@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+#camera-container {
+    margin: 20px auto;
+    width: 640px;
+    height: 480px;
+    position: relative;
+}
+
+video, canvas {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#emotion {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #ff0000;
+}

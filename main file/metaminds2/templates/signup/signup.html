@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .login-link {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signUpForm">
+            <input type="text" id="fullname" placeholder="Enter your full name" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            <p class="error" id="errorMsg"></p>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="index.html">Sign In</a></p>
+    </div>
+
+    <script>
+    const redirectURL = "{{ url_for('nextpage') }}";  // Make sure this is rendered through Flask!
+
+    document.getElementById("signUpForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById("fullname").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const errorMsg = document.getElementById("errorMsg");
+
+        if (!fullName || !email || !password || !phone) {
+            errorMsg.textContent = "All fields are required!";
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            errorMsg.textContent = "Invalid email format!";
+            return;
+        }
+
+        if (password.length < 6) {
+            errorMsg.textContent = "Password must be at least 6 characters!";
+            return;
+        }
+
+        if (!/^\d{10}$/.test(phone)) {
+            errorMsg.textContent = "Phone number must be 10 digits!";
+            return;
+        }
+
+        alert("Sign-up successful! Redirecting...");
+        errorMsg.textContent = "";
+
+        // Store user data (optional)
+        localStorage.setItem("user", JSON.stringify({ fullName, email, phone }));
+
+        // Redirect to welcome page
+        setTimeout(() => {
+            window.location.href = redirectURL;
+        }, 1000);
+    });
+</script>
+
+
+
+</body>
+</html>
